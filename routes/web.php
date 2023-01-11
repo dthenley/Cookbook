@@ -32,8 +32,11 @@ Route::get('recipes/{recipe}', function ($slug) {
         }
     );
 
-    return view('recipe', [
-        'recipe' => $recipe
-    ]);
+    return view(
+        'recipe',
+        [
+            'recipe' => $recipe
+        ]
+    );
 
 })->where('recipe', '[A-z0-9_\-]+');
