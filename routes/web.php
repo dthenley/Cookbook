@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Recipe;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,25 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('recipes/{recipe}', function ($slug) {
-    $path = __DIR__ . "/../resources/recipes/{$slug}.html";
-
-    if (! file_exists($path)) {
-        abort(404);
-    }
-
-    $recipe = cache()->remember(
-        "recipes.{slug}",
-        now()->addHours(4),
-        function () use ($path) {
-            return file_get_contents($path);
-        }
-    );
-
-    return view(
-        'recipe',
-        [
-            'recipe' => $recipe
-        ]
-    );
-
+    return view('recipe', [
+        'recipe' => Recipe::find($slug)
+    ]);
 })->where('recipe', '[A-z0-9_\-]+');
