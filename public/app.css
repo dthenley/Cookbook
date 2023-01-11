@@ -1,0 +1,10 @@
+body > * {
+    max-width: 50rem;
+    margin: 0 auto;
+}
+
+article + article {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    border-top: 1px solid grey;
+}
