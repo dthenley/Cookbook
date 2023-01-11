@@ -22,11 +22,18 @@ Route::get('recipes/{recipe}', function ($slug) {
 
     if (! file_exists($path)) {
         abort(404);
-    } else {
-
-        $recipe = file_get_contents($path);
-        return view('recipe', [
-            'recipe' => $recipe
-        ]);
     }
+
+    $recipe = cache()->remember(
+        "recipes.{slug}",
+        now()->addHours(4),
+        function () use ($path) {
+            return file_get_contents($path);
+        }
+    );
+
+    return view('recipe', [
+        'recipe' => $recipe
+    ]);
+
 })->where('recipe', '[A-z0-9_\-]+');
