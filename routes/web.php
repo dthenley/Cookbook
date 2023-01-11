@@ -29,4 +29,4 @@ Route::get('recipes/{recipe}', function ($slug) {
             'recipe' => $recipe
         ]);
     }
-});
+})->where('recipe', '[A-z0-9_\-]+');
