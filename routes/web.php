@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('recipes');
+    return view('recipes', [
+        'recipes' => Recipe::all()
+    ]);
 });
 
 Route::get('recipes/{recipe}', function ($slug) {
