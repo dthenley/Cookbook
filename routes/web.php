@@ -20,8 +20,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('recipes/{recipe}', function ($slug) {
+Route::get('recipes/{recipe}', function ($id) {
     return view('recipe', [
-        'recipe' => Recipe::find($slug)
+        'recipe' => Recipe::find($id)
     ]);
-})->where('recipe', '[A-z0-9_\-]+');
+});

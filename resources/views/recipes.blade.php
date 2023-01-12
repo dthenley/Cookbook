@@ -7,7 +7,7 @@
         There are {{$loop->count}} recipes
         <article>
             <h2>
-                <a href="/recipes/{{$recipe->slug}}">
+                <a href="/recipes/{{$recipe->id}}">
                     {{$recipe->title}}
                 </a>
             </h2>
