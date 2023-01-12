@@ -18,22 +18,21 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 Route::get('/', function () {
 
     $files = File::files(resource_path("recipes/"));
-    $recipes = [];
 
-    foreach($files as $file) {
-        $document = YamlFrontMatter::parseFile($file);
+    $recipes = collect($files)
+        ->map(function($file) {
+            $document = YamlFrontMatter::parseFile($file);
 
-        // These variables are not being assigned to the public variables in the class
-        $recipes[] = new Recipe(
-            $document->slug,
-            $document->title,
-            $document->excerpt,
-            $document->date,
-            $document->body(),
-        );
-    }
+            // These variables are not being assigned to the public variables in the class
+            return new Recipe(
+                $document->slug,
+                $document->title,
+                $document->excerpt,
+                $document->date,
+                $document->body(),
+            );
+        });
 
-    // ddd($recipes);
 
     return view('recipes', [
         'recipes' => $recipes
