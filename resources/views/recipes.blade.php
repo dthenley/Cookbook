@@ -13,7 +13,14 @@
         <h1>Cookbook</h1>
     </header>
     <?php foreach( $recipes as $recipe) : ?>
-        <?= $recipe; ?>
+        <article>
+            <h2>
+                <a href="/recipes/{{$recipe->slug}}">
+                    {{$recipe->title}}
+                </a>
+            </h2>
+            {!!$recipe->body!!}
+        </article>
     <?php endforeach; ?>
 </body>
 </html>
