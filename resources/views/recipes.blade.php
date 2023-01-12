@@ -12,7 +12,7 @@
     <header>
         <h1>Cookbook</h1>
     </header>
-    <?php foreach( $recipes as $recipe) : ?>
+    @foreach ($recipes as $recipe)
         <article>
             <h2>
                 <a href="/recipes/{{$recipe->slug}}">
@@ -21,6 +21,6 @@
             </h2>
             {!!$recipe->body!!}
         </article>
-    <?php endforeach; ?>
+    @endforeach
 </body>
 </html>
