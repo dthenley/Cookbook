@@ -20,8 +20,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('recipes/{recipe}', function ($id) {
+Route::get('recipes/{recipe}', function (Recipe $recipe) {
     return view('recipe', [
-        'recipe' => Recipe::find($id)
+        'recipe' => $recipe
     ]);
 });
