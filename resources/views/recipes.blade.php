@@ -1,7 +1,4 @@
-
-@extends('layout')
-
-@section('content')
+<x-layout>
     <header>
         <h1>Cookbook</h1>
     </header>
@@ -17,4 +14,4 @@
             {!!$recipe->body!!}
         </article>
     @endforeach
-@endsection
+</x-layout>

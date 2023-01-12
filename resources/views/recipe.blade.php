@@ -1,10 +1,8 @@
-@extends('layout')
-
-@section('content')
+<x-layout>
     <article>
         <h1>
                 {{$recipe->title}}
         </h1>
         {!!$recipe->body!!}
     </article>
-@endsection
+</x-layout>
