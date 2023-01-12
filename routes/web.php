@@ -2,7 +2,6 @@
 
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Route;
-use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,26 +15,8 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/', function () {
-
-    $files = File::files(resource_path("recipes/"));
-
-    $recipes = collect($files)
-        ->map(function($file) {
-            $document = YamlFrontMatter::parseFile($file);
-
-            // These variables are not being assigned to the public variables in the class
-            return new Recipe(
-                $document->slug,
-                $document->title,
-                $document->excerpt,
-                $document->date,
-                $document->body(),
-            );
-        });
-
-
     return view('recipes', [
-        'recipes' => $recipes
+        'recipes' => Recipe::all()
     ]);
 });
 

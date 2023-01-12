@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\File;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 class Recipe
 {
@@ -28,11 +29,19 @@ class Recipe
 
     public static function all()
     {
-        $files = File::files(resource_path("recipes/"));
+        return collect(File::files(resource_path("recipes/")))
+        ->map(function($file) {
+            $document = YamlFrontMatter::parseFile($file);
 
-        return array_map(function($file) {
-            return $file->getContents();
-        }, $files);
+            // These variables are not being assigned to the public variables in the class
+            return new Recipe(
+                $document->slug,
+                $document->title,
+                $document->excerpt,
+                $document->date,
+                $document->body(),
+            );
+        });
     }
 
     public static function find($slug)
