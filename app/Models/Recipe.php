@@ -46,17 +46,9 @@ class Recipe
 
     public static function find($slug)
     {
-        if (!file_exists($path = resource_path("recipes/{$slug}.html"))) {
-             throw new ModelNotFoundException();
-        }
+        $recipes = static::all();
 
-        return cache()->remember(
-            "recipes.{slug}",
-            now()->addHours(4),
-            function () use ($path) {
-                return file_get_contents($path);
-            }
-        );
+        return $recipes->firstWhere('slug', $slug);
 
     }
 }

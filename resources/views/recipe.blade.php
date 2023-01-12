@@ -9,6 +9,11 @@
 </head>
 
 <body>
-    <?= $recipe ?>
+    <article>
+        <h1>
+                {{$recipe->title}}
+        </h1>
+        {!!$recipe->body!!}
+    </article>
 </body>
 </html>
