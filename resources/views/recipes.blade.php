@@ -16,6 +16,9 @@
                     {{$recipe->category->name}}
                 </a>
             </p>
+            <p>
+                Add by <a href="/user/{{$recipe->user->slug}}">{{$recipe->user->name}}</a>
+            </p>
             {!!$recipe->excerpt!!}
         </article>
     @endforeach
