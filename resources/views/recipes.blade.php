@@ -17,7 +17,7 @@
                 </a>
             </p>
             <p>
-                Add by <a href="/user/{{$recipe->user->slug}}">{{$recipe->user->name}}</a>
+                Add by <a href="/user/{{$recipe->user->username}}">{{$recipe->user->name}}</a>
             </p>
             {!!$recipe->excerpt!!}
         </article>

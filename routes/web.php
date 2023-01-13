@@ -34,7 +34,7 @@ Route::get('category/{category:slug}', function (Category $category) {
     ]);
 });
 
-Route::get('user/{user:slug}', function (User $user) {
+Route::get('user/{user:username}', function (User $user) {
     return view('recipes', [
         'recipes' => $user->recipe
     ]);
