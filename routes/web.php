@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('recipes', [
-        'recipes' => Recipe::with('category')->get()
+        'recipes' => Recipe::latest('published_at')->with('category')->get()
     ]);
 });
 
