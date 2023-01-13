@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('recipes', [
-        'recipes' => Recipe::latest('published_at')->with('category', 'user')->get()
+        'recipes' => Recipe::latest('published_at')
     ]);
 });
 
@@ -30,12 +30,12 @@ Route::get('recipes/{recipe:slug}', function (Recipe $recipe) {
 
 Route::get('category/{category:slug}', function (Category $category) {
     return view('recipes', [
-        'recipes' => $category->recipe->load(['user', 'category'])
+        'recipes' => $category->recipe
     ]);
 });
 
 Route::get('user/{user:username}', function (User $user) {
     return view('recipes', [
-        'recipes' => $user->recipe->load(['user', 'category'])
+        'recipes' => $user->recipe
     ]);
 });

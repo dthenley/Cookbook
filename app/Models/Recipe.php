@@ -9,6 +9,8 @@ class Recipe extends Model
 {
     use HasFactory;
 
+    protected $with = ['category', 'user'];
+
     public function category() {
         return $this->belongsTo(Category::class);
     }
