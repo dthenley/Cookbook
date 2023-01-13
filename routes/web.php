@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Recipe;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,5 +24,11 @@ Route::get('/', function () {
 Route::get('recipes/{recipe:slug}', function (Recipe $recipe) {
     return view('recipe', [
         'recipe' => $recipe
+    ]);
+});
+
+Route::get('category/{category:slug}', function (Category $category) {
+    return view('recipes', [
+        'recipes' => $category->recipe
     ]);
 });

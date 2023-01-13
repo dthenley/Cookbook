@@ -11,7 +11,12 @@
                     {{$recipe->title}}
                 </a>
             </h2>
-            {!!$recipe->body!!}
+             <p>
+                <a href="/category/{{$recipe->category->slug}}">
+                    {{$recipe->category->name}}
+                </a>
+            </p>
+            {!!$recipe->excerpt!!}
         </article>
     @endforeach
 </x-layout>
