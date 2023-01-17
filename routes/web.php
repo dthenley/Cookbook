@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\RegisterController;
 use App\Models\Recipe;
 use App\Models\Category;
 use App\Models\User;
@@ -28,3 +29,5 @@ Route::get('user/{user:username}', function (User $user) {
     ]);
 });
 
+Route::get('register', [RegisterController::class, 'create']);
+Route::post('register', [RegisterController::class, 'store']);
