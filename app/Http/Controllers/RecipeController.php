@@ -11,7 +11,8 @@ class RecipeController extends Controller
     public function index() {
         return view('recipes', [
             'recipes' => Recipe::latest()->filter(request(['search', 'category']))->get(),
-            'categories'=>Category::all()
+            'categories'=>Category::all(),
+            'currentCategory' => Category::firstWhere('slug', request('category'))
         ]);
     }
 

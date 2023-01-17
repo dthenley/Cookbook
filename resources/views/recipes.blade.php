@@ -4,13 +4,14 @@
         <ul>
             @foreach($categories as $category)
                 <li>
-                <a href="/category/{{$category->slug}}">{{$category->name}}</a>
+                <a href="/?category={{$category->slug}}">{{$category->name}}</a>
                 </li>
             @endforeach
         </ul>
     </aside>
     <div>
         <h1 class="text-xl lg:text-4xl">Recipes</h1>
+
         {{-- <p class="mb-4 mt-2">Results: {{count($recipes)}} recipes</p> --}}
         @foreach ($recipes as $recipe)
             <article class="card">
@@ -20,7 +21,7 @@
                     </a>
                 </h2>
                 <p>
-                    <a href="/category/{{$recipe->category->slug}}">
+                    <a href="/?category={{$recipe->category->slug}}">
                         {{$recipe->category->name}}
                     </a>
                 </p>

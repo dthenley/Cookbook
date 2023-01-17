@@ -18,14 +18,11 @@ class Recipe extends Model
                 ->orWhere('title', 'like', '%' . $search . '%');
         });
 
-        $query->when( $filters[ 'category' ] ?? false, function($query, $category) {
-            $query
-                ->whereExists( fn($query) =>
-                    $query->from('categories')
-                        ->whereColumn('categories.id', 'recipes.category_id')
-                        ->where('categories.slug', $category)
-                );
-        });
+        $query->when( $filters[ 'category' ] ?? false, fn($query, $category) =>
+            $query->whereHas('category', fn($query) =>
+                $query->where('slug', $category)
+            )
+        );
 
     }
 

@@ -21,14 +21,6 @@ Route::get('/', [RecipeController::class, 'index']);
 
 Route::get('recipes/{recipe:slug}', [RecipeController::class, 'show']);
 
-Route::get('category/{category:slug}', function (Category $category) {
-    return view('recipes', [
-        'recipes' => $category->recipe,
-        'categories'=>Category::all()
-
-    ]);
-});
-
 Route::get('user/{user:username}', function (User $user) {
     return view('recipes', [
         'recipes' => $user->recipe,
