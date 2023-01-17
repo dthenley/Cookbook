@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RecipeController;
 use App\Models\Recipe;
 use App\Models\Category;
 use App\Models\User;
@@ -16,26 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $recipes = Recipe::latest();
+Route::get('/', [RecipeController::class, 'index']);
 
-    if(request('search')) {
-        $recipes
-            ->where('title', 'like', '%' .request('search') . '%')
-            ->orWhere('title', 'like', '%' .request('search') . '%');
-    }
-
-    return view('recipes', [
-        'recipes' => $recipes->get(),
-        'categories'=>Category::all()
-    ]);
-});
-
-Route::get('recipes/{recipe:slug}', function (Recipe $recipe) {
-    return view('recipe', [
-        'recipe' => $recipe
-    ]);
-});
+Route::get('recipes/{recipe:slug}', [RecipeController::class, 'show']);
 
 Route::get('category/{category:slug}', function (Category $category) {
     return view('recipes', [
