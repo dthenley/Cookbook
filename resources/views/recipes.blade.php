@@ -11,7 +11,7 @@
     </aside>
     <div>
         <h1 class="text-xl lg:text-4xl">Recipes</h1>
-        <p class="mb-4 mt-2">Results: {{count($recipes)}} recipes</p>
+        {{-- <p class="mb-4 mt-2">Results: {{count($recipes)}} recipes</p> --}}
         @foreach ($recipes as $recipe)
             <article class="card">
                 <h2 class="text-lg lg:text-2xl">

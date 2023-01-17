@@ -17,8 +17,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $recipes = Recipe::latest();
+
+    if(request('search')) {
+        $recipes
+            ->where('title', 'like', '%' .request('search') . '%')
+            ->orWhere('title', 'like', '%' .request('search') . '%');
+    }
+
     return view('recipes', [
-        'recipes' => Recipe::all(),
+        'recipes' => $recipes->get(),
         'categories'=>Category::all()
     ]);
 });
@@ -43,3 +51,4 @@ Route::get('user/{user:username}', function (User $user) {
         'categories'=>Category::all()
     ]);
 });
+

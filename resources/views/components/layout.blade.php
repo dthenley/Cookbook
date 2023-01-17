@@ -15,6 +15,14 @@
     <header class="border-b-2 max-w-full">
         <div class="container flex justify-between gap-4 py-4 px-2 mx-auto">
             <a href="/" class="text-2xl">Cookbook</a>
+            <div class="relative flex  items-center bg-gray-100 rounded-xl px-3 py-2">
+                <form action="#" method="get">
+                    <input type="text" name="search" placeholder="Find Something"
+                    class="bg-transparent placeholder-black font-semibold text-sm text-slate-900 "
+                    value="{{request('search')}}"
+                    >
+                </form>
+            </div>
             <nav>
                 <ul class="flex gap-3">
                     <li><a href="/recipes">Recipes</a></li>
