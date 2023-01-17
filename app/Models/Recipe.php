@@ -11,13 +11,12 @@ class Recipe extends Model
 
     protected $with = ['category', 'user'];
 
-    public function scopeFilter($query) {
-        if(request('search')) {
+    public function scopeFilter($query, array $filters) {
+        $query->when( $filters[ 'search' ] ?? false, function($query, $search) {
             $query
-                ->where('title', 'like', '%' .request('search') . '%')
-                ->orWhere('title', 'like', '%' .request('search') . '%');
-        }
-
+                ->where('title', 'like', '%' . $search . '%')
+                ->orWhere('title', 'like', '%' . $search . '%');
+        });
     }
 
     public function category() {

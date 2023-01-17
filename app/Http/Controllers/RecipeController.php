@@ -10,7 +10,7 @@ class RecipeController extends Controller
 {
     public function index() {
         return view('recipes', [
-            'recipes' => Recipe::latest()->filter()->get(),
+            'recipes' => Recipe::latest()->filter(request(['search']))->get(),
             'categories'=>Category::all()
         ]);
     }
