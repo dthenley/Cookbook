@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cookbook</title>
-    <link rel="stylesheet" href="/app.css">
+    {{-- <link rel="stylesheet" href="/app.css"> --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 
 
@@ -31,7 +33,7 @@
             </nav>
         </div>
     </header>
-    <main class="flex gap-4 lg:gap-20 mt-6">
+    <main class="flex justify-center gap-4 lg:gap-10 mt-6 px-2">
         {{$slot}}
     </main>
 </body>
